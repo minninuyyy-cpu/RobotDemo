@@ -131,11 +131,64 @@ Tests the successful login flow:
 - **rellu**: Release management tool
 - **docutils**: Documentation utilities
 
+## Troubleshooting
+
+### Firefox Binary Error
+
+If you encounter the error: `InvalidArgumentException: Message: binary is not a Firefox executable`
+
+**For Local Development (Windows):**
+1. Make sure Firefox is installed and accessible in your PATH
+2. Verify Firefox installation:
+   ```bash
+   firefox --version
+   ```
+3. If Firefox is not in PATH, you can:
+   - Add Firefox installation directory to your system PATH
+   - Or use Chrome instead by running:
+     ```bash
+     robot --variable BROWSER:Chrome login_tests/
+     ```
+
+**For Local Development (Linux/Mac):**
+1. Install Firefox:
+   ```bash
+   # Ubuntu/Debian
+   sudo apt-get install firefox
+   
+   # macOS
+   brew install firefox
+   ```
+2. Install GeckoDriver:
+   ```bash
+   # Download from https://github.com/mozilla/geckodriver/releases
+   # Extract and add to PATH
+   ```
+3. Verify installation:
+   ```bash
+   firefox --version
+   geckodriver --version
+   ```
+
+**For CI/CD (GitHub Actions):**
+- The workflow now uses Chrome by default (more reliable in CI)
+- Firefox is also installed as an alternative option
+- If you want to use Firefox in CI, the workflow includes proper installation steps
+
+**Quick Fix - Use Chrome:**
+If Firefox continues to cause issues, you can switch to Chrome:
+```bash
+robot --variable BROWSER:Chrome login_tests/
+```
+
+Make sure Chrome and ChromeDriver are installed if using Chrome locally.
+
 ## Notes
 
 - Screenshots are automatically captured on test failures
 - Test reports are generated in HTML format after each run
 - The project uses the demo application at `the-internet.herokuapp.com` for testing
+- The CI/CD pipeline uses Chrome by default for better reliability
 
 ## License
 

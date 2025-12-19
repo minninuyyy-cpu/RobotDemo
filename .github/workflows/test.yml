@@ -23,16 +23,26 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y firefox
-        sudo apt-get install -y wget
+        sudo apt-get install -y wget curl gnupg
         
-    - name: Install Firefox GeckoDriver
+    - name: Install Chrome
       run: |
-        GECKODRIVER_VERSION=0.33.0
-        wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz
-        sudo tar -xzf /tmp/geckodriver.tar.gz -C /usr/local/bin/
-        sudo chmod +x /usr/local/bin/geckodriver
-        geckodriver --version
+        # Install Google Chrome (more reliable in CI environments)
+        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+        google-chrome --version
+        
+    - name: Install ChromeDriver
+      run: |
+        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d. -f1)
+        CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
+        wget -O /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${CHROMEDRIVER_VERSION}/linux64/chromedriver-linux64.zip"
+        unzip -q /tmp/chromedriver.zip -d /tmp/
+        sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
+        sudo chmod +x /usr/local/bin/chromedriver
+        chromedriver --version
         
     - name: Install Python dependencies
       run: |
@@ -41,7 +51,8 @@ jobs:
         
     - name: Run Robot Framework tests
       run: |
-        robot --variable BROWSER:Firefox login_tests/
+        # Use Chrome by default in CI (more reliable than Firefox)
+        robot --variable BROWSER:Chrome login_tests/
         
     - name: Upload test results
       uses: actions/upload-artifact@v4
