@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4 (Python 3.12.10 on win32)" generated="2025-12-19T10:53:14.806890" rpa="false" schemaversion="5">
+<suite id="s1" name="Login Tests" source="D:\robotframework\login_tests">
+<suite id="s1-s1" name="Valid Login" source="D:\robotframework\login_tests\valid_login.robot">
+<test id="s1-s1-t1" name="Valid Login" line="9">
+<kw name="Open Browser To Login Page" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-12-19T10:53:14.954787" level="INFO">Opening browser 'Firefox' to base url 'https://the-internet.herokuapp.com/login'.</msg>
+<arg>${LOGIN URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-12-19T10:53:14.954787" elapsed="9.182487"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-12-19T10:53:24.137274" elapsed="0.279987"/>
+</kw>
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-12-19T10:53:24.418264" elapsed="0.000000"/>
+</kw>
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-12-19T10:53:24.420260" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-12-19T10:53:24.418264" elapsed="0.001996"/>
+</kw>
+<status status="PASS" start="2025-12-19T10:53:24.418264" elapsed="0.001996"/>
+</kw>
+<status status="PASS" start="2025-12-19T10:53:14.953787" elapsed="9.466473"/>
+</kw>
+<kw name="Input Username" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T10:53:24.421261" level="INFO">Typing text 'tomsmith' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T10:53:24.421261" elapsed="0.033673"/>
+</kw>
+<arg>tomsmith</arg>
+<status status="PASS" start="2025-12-19T10:53:24.420260" elapsed="0.034674"/>
+</kw>
+<kw name="Input Password" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T10:53:24.455933" level="INFO">Typing text 'Password!' into text field 'password'.</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T10:53:24.455933" elapsed="0.023034"/>
+</kw>
+<arg>Password!</arg>
+<status status="PASS" start="2025-12-19T10:53:24.455933" elapsed="0.024033"/>
+</kw>
+<kw name="Submit Credentials" owner="resource">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-12-19T10:53:24.480966" level="INFO">Clicking button 'submit'.</msg>
+<msg time="2025-12-19T10:53:24.539208" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-19T10:53:24.539208" level="FAIL">Button with locator 'submit' not found.</msg>
+<arg>submit</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-12-19T10:53:24.480966" elapsed="0.062517">Button with locator 'submit' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T10:53:24.480966" elapsed="0.062517">Button with locator 'submit' not found.</status>
+</kw>
+<kw name="Welcome Page Should Be Open" owner="resource">
+<status status="NOT RUN" start="2025-12-19T10:53:24.544482" elapsed="0.000000"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-12-19T10:53:24.545483" elapsed="2.838912"/>
+</kw>
+<status status="FAIL" start="2025-12-19T10:53:14.953787" elapsed="12.430608">Button with locator 'submit' not found.</status>
+</test>
+<doc>A test suite with a single test for valid login.
+
+This test has a workflow that is created using keywords in
+the imported resource file.</doc>
+<status status="FAIL" start="2025-12-19T10:53:14.833034" elapsed="12.552360"/>
+</suite>
+<status status="FAIL" start="2025-12-19T10:53:14.807889" elapsed="12.577505"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Login Tests" id="s1" pass="0" fail="1" skip="0">Login Tests</stat>
+<stat name="Valid Login" id="s1-s1" pass="0" fail="1" skip="0">Login Tests.Valid Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
