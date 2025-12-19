@@ -175,6 +175,24 @@ If you encounter the error: `InvalidArgumentException: Message: binary is not a 
 - Firefox is also installed as an alternative option
 - If you want to use Firefox in CI, the workflow includes proper installation steps
 
+### ChromeDriver Session Error
+
+If you encounter: `SessionNotCreatedException: Message: session not created: Chrome instance exited`
+
+**For CI/CD (GitHub Actions):**
+- The workflow now automatically configures Chrome with headless options
+- Chrome is configured with `--no-sandbox` and `--disable-dev-shm-usage` flags required for CI
+- The resource file automatically applies these settings when using Chrome
+
+**For Local Development:**
+- Chrome should work normally without headless mode
+- If you need headless mode locally, the resource file will automatically apply it
+- Make sure Chrome and ChromeDriver versions are compatible:
+  ```bash
+  google-chrome --version
+  chromedriver --version
+  ```
+
 **Quick Fix - Use Chrome:**
 If Firefox continues to cause issues, you can switch to Chrome:
 ```bash

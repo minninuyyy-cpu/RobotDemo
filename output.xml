@@ -1,95 +1,539 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4 (Python 3.12.10 on win32)" generated="2025-12-19T10:53:14.806890" rpa="false" schemaversion="5">
-<suite id="s1" name="Login Tests" source="D:\robotframework\login_tests">
-<suite id="s1-s1" name="Valid Login" source="D:\robotframework\login_tests\valid_login.robot">
-<test id="s1-s1-t1" name="Valid Login" line="9">
-<kw name="Open Browser To Login Page" owner="resource">
+<robot generator="Robot 7.4 (Python 3.12.10 on win32)" generated="2025-12-19T12:32:16.333690" rpa="false" schemaversion="5">
+<suite id="s1" name="Login Tests" source="D:\sendtest\RobotDemo\login_tests">
+<suite id="s1-s1" name="Invalid Login" source="D:\sendtest\RobotDemo\login_tests\invalid_login.robot">
+<kw name="Open Browser To Login Page" owner="resource" type="SETUP">
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${BROWSER}' == 'Chrome'</arg>
+<arg>Open Chrome With Options</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-12-19T12:32:16.483760" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-12-19T10:53:14.954787" level="INFO">Opening browser 'Firefox' to base url 'https://the-internet.herokuapp.com/login'.</msg>
+<msg time="2025-12-19T12:32:16.484759" level="INFO">Opening browser 'Firefox' to base url 'https://the-internet.herokuapp.com/login'.</msg>
 <arg>${LOGIN URL}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-12-19T10:53:14.954787" elapsed="9.182487"/>
+<status status="PASS" start="2025-12-19T12:32:16.484759" elapsed="8.703805"/>
+</kw>
+<arg>'${BROWSER}' != 'Chrome'</arg>
+<arg>Open Browser</arg>
+<arg>${LOGIN URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-12-19T12:32:16.484759" elapsed="8.703805"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-12-19T10:53:24.137274" elapsed="0.279987"/>
+<status status="PASS" start="2025-12-19T12:32:25.189564" elapsed="0.305689"/>
 </kw>
 <kw name="Set Selenium Speed" owner="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2025-12-19T10:53:24.418264" elapsed="0.000000"/>
+<status status="PASS" start="2025-12-19T12:32:25.495253" elapsed="0.000000"/>
 </kw>
 <kw name="Login Page Should Be Open" owner="resource">
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-12-19T10:53:24.420260" level="INFO">Page title is 'The Internet'.</msg>
+<msg time="2025-12-19T12:32:25.498252" level="INFO">Page title is 'The Internet'.</msg>
 <arg>The Internet</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-12-19T10:53:24.418264" elapsed="0.001996"/>
+<status status="PASS" start="2025-12-19T12:32:25.496253" elapsed="0.001999"/>
 </kw>
-<status status="PASS" start="2025-12-19T10:53:24.418264" elapsed="0.001996"/>
+<status status="PASS" start="2025-12-19T12:32:25.495253" elapsed="0.002999"/>
 </kw>
-<status status="PASS" start="2025-12-19T10:53:14.953787" elapsed="9.466473"/>
+<status status="PASS" start="2025-12-19T12:32:16.483760" elapsed="9.014492"/>
 </kw>
+<test id="s1-s1-t1" name="Invalid Username" line="17">
+<kw name="Go To Login Page" owner="resource" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:25.498252" level="INFO">Opening url 'https://the-internet.herokuapp.com/login'</msg>
+<arg>${LOGIN URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-12-19T12:32:25.498252" elapsed="0.305252"/>
+</kw>
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:25.806504" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-12-19T12:32:25.804504" elapsed="0.002000"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:25.804504" elapsed="0.002000"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:25.498252" elapsed="0.308252"/>
+</kw>
+<kw name="Login With Invalid Credentials Should Fail">
 <kw name="Input Username" owner="resource">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-12-19T10:53:24.421261" level="INFO">Typing text 'tomsmith' into text field 'username'.</msg>
+<msg time="2025-12-19T12:32:25.808504" level="INFO">Typing text 'invalid' into text field 'username'.</msg>
 <arg>username</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-12-19T10:53:24.421261" elapsed="0.033673"/>
+<status status="PASS" start="2025-12-19T12:32:25.808504" elapsed="0.035210"/>
 </kw>
-<arg>tomsmith</arg>
-<status status="PASS" start="2025-12-19T10:53:24.420260" elapsed="0.034674"/>
+<arg>${username}</arg>
+<status status="PASS" start="2025-12-19T12:32:25.807504" elapsed="0.036210"/>
 </kw>
 <kw name="Input Password" owner="resource">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-12-19T10:53:24.455933" level="INFO">Typing text 'Password!' into text field 'password'.</msg>
+<msg time="2025-12-19T12:32:25.844712" level="INFO">Typing text 'SuperSecretPassword!' into text field 'password'.</msg>
 <arg>password</arg>
 <arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-12-19T10:53:24.455933" elapsed="0.023034"/>
+<status status="PASS" start="2025-12-19T12:32:25.843714" elapsed="0.016716"/>
 </kw>
-<arg>Password!</arg>
-<status status="PASS" start="2025-12-19T10:53:24.455933" elapsed="0.024033"/>
+<arg>${password}</arg>
+<status status="PASS" start="2025-12-19T12:32:25.843714" elapsed="0.016716"/>
 </kw>
 <kw name="Submit Credentials" owner="resource">
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-12-19T10:53:24.480966" level="INFO">Clicking button 'submit'.</msg>
-<msg time="2025-12-19T10:53:24.539208" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-12-19T10:53:24.539208" level="FAIL">Button with locator 'submit' not found.</msg>
-<arg>submit</arg>
+<msg time="2025-12-19T12:32:25.860430" level="INFO">Clicking button 'Logout'.</msg>
+<msg time="2025-12-19T12:32:25.907982" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-15.png"&gt;&lt;img src="selenium-screenshot-15.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-19T12:32:25.909486" level="FAIL">Button with locator 'Logout' not found.</msg>
+<arg>Logout</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="FAIL" start="2025-12-19T10:53:24.480966" elapsed="0.062517">Button with locator 'submit' not found.</status>
+<status status="FAIL" start="2025-12-19T12:32:25.860430" elapsed="0.051060">Button with locator 'Logout' not found.</status>
 </kw>
-<status status="FAIL" start="2025-12-19T10:53:24.480966" elapsed="0.062517">Button with locator 'submit' not found.</status>
+<status status="FAIL" start="2025-12-19T12:32:25.860430" elapsed="0.051060">Button with locator 'Logout' not found.</status>
+</kw>
+<kw name="Login Should Have Failed">
+<status status="NOT RUN" start="2025-12-19T12:32:25.912489" elapsed="0.000000"/>
+</kw>
+<arg>invalid</arg>
+<arg>${VALID PASSWORD}</arg>
+<status status="FAIL" start="2025-12-19T12:32:25.807504" elapsed="0.104985">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:25.498252" elapsed="0.415239">Button with locator 'Logout' not found.</status>
+</test>
+<test id="s1-s1-t2" name="Invalid Password" line="18">
+<kw name="Go To Login Page" owner="resource" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:25.915491" level="INFO">Opening url 'https://the-internet.herokuapp.com/login'</msg>
+<arg>${LOGIN URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-12-19T12:32:25.915491" elapsed="0.298493"/>
+</kw>
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.217984" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-12-19T12:32:26.214984" elapsed="0.003000"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:26.213984" elapsed="0.004000"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:25.914491" elapsed="0.303493"/>
+</kw>
+<kw name="Login With Invalid Credentials Should Fail">
+<kw name="Input Username" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.219486" level="INFO">Typing text 'tomsmith' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:26.219486" elapsed="0.021055"/>
+</kw>
+<arg>${username}</arg>
+<status status="PASS" start="2025-12-19T12:32:26.219486" elapsed="0.021055"/>
+</kw>
+<kw name="Input Password" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.241542" level="INFO">Typing text 'invalid' into text field 'password'.</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:26.241542" elapsed="0.014909"/>
+</kw>
+<arg>${password}</arg>
+<status status="PASS" start="2025-12-19T12:32:26.241542" elapsed="0.014909"/>
+</kw>
+<kw name="Submit Credentials" owner="resource">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.257452" level="INFO">Clicking button 'Logout'.</msg>
+<msg time="2025-12-19T12:32:26.322309" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-16.png"&gt;&lt;img src="selenium-screenshot-16.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-19T12:32:26.322309" level="FAIL">Button with locator 'Logout' not found.</msg>
+<arg>Logout</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-12-19T12:32:26.256451" elapsed="0.066859">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:26.256451" elapsed="0.067859">Button with locator 'Logout' not found.</status>
+</kw>
+<kw name="Login Should Have Failed">
+<status status="NOT RUN" start="2025-12-19T12:32:26.324310" elapsed="0.000000"/>
+</kw>
+<arg>${VALID USER}</arg>
+<arg>invalid</arg>
+<status status="FAIL" start="2025-12-19T12:32:26.217984" elapsed="0.107327">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:25.914491" elapsed="0.410820">Button with locator 'Logout' not found.</status>
+</test>
+<test id="s1-s1-t3" name="Invalid Username And Password" line="19">
+<kw name="Go To Login Page" owner="resource" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.327309" level="INFO">Opening url 'https://the-internet.herokuapp.com/login'</msg>
+<arg>${LOGIN URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-12-19T12:32:26.327309" elapsed="0.316111"/>
+</kw>
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.648420" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-12-19T12:32:26.644422" elapsed="0.003998"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:26.644422" elapsed="0.003998"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:26.327309" elapsed="0.321111"/>
+</kw>
+<kw name="Login With Invalid Credentials Should Fail">
+<kw name="Input Username" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.650939" level="INFO">Typing text 'invalid' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:26.649929" elapsed="0.027056"/>
+</kw>
+<arg>${username}</arg>
+<status status="PASS" start="2025-12-19T12:32:26.649929" elapsed="0.028057"/>
+</kw>
+<kw name="Input Password" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.677986" level="INFO">Typing text 'whatever' into text field 'password'.</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:26.677986" elapsed="0.029568"/>
+</kw>
+<arg>${password}</arg>
+<status status="PASS" start="2025-12-19T12:32:26.677986" elapsed="0.029568"/>
+</kw>
+<kw name="Submit Credentials" owner="resource">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.708557" level="INFO">Clicking button 'Logout'.</msg>
+<msg time="2025-12-19T12:32:26.761794" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-17.png"&gt;&lt;img src="selenium-screenshot-17.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-19T12:32:26.761794" level="FAIL">Button with locator 'Logout' not found.</msg>
+<arg>Logout</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-12-19T12:32:26.708557" elapsed="0.054237">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:26.707554" elapsed="0.055240">Button with locator 'Logout' not found.</status>
+</kw>
+<kw name="Login Should Have Failed">
+<status status="NOT RUN" start="2025-12-19T12:32:26.763793" elapsed="0.000000"/>
+</kw>
+<arg>invalid</arg>
+<arg>whatever</arg>
+<status status="FAIL" start="2025-12-19T12:32:26.649929" elapsed="0.113864">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:26.326310" elapsed="0.437483">Button with locator 'Logout' not found.</status>
+</test>
+<test id="s1-s1-t4" name="Empty Username" line="20">
+<kw name="Go To Login Page" owner="resource" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:26.765792" level="INFO">Opening url 'https://the-internet.herokuapp.com/login'</msg>
+<arg>${LOGIN URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-12-19T12:32:26.765792" elapsed="0.297803"/>
+</kw>
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.066595" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.063595" elapsed="0.004001"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:27.063595" elapsed="0.004001"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:26.764792" elapsed="0.302804"/>
+</kw>
+<kw name="Login With Invalid Credentials Should Fail">
+<kw name="Input Username" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.068597" level="INFO">Typing text '' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.068597" elapsed="0.012016"/>
+</kw>
+<arg>${username}</arg>
+<status status="PASS" start="2025-12-19T12:32:27.068597" elapsed="0.012016"/>
+</kw>
+<kw name="Input Password" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.081613" level="INFO">Typing text 'SuperSecretPassword!' into text field 'password'.</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.081613" elapsed="0.016053"/>
+</kw>
+<arg>${password}</arg>
+<status status="PASS" start="2025-12-19T12:32:27.080613" elapsed="0.017053"/>
+</kw>
+<kw name="Submit Credentials" owner="resource">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.098666" level="INFO">Clicking button 'Logout'.</msg>
+<msg time="2025-12-19T12:32:27.163384" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-18.png"&gt;&lt;img src="selenium-screenshot-18.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-19T12:32:27.163384" level="FAIL">Button with locator 'Logout' not found.</msg>
+<arg>Logout</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-12-19T12:32:27.098666" elapsed="0.065717">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:27.098666" elapsed="0.065717">Button with locator 'Logout' not found.</status>
+</kw>
+<kw name="Login Should Have Failed">
+<status status="NOT RUN" start="2025-12-19T12:32:27.164383" elapsed="0.000000"/>
+</kw>
+<arg>${EMPTY}</arg>
+<arg>${VALID PASSWORD}</arg>
+<status status="FAIL" start="2025-12-19T12:32:27.067596" elapsed="0.097787">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:26.764792" elapsed="0.400591">Button with locator 'Logout' not found.</status>
+</test>
+<test id="s1-s1-t5" name="Empty Password" line="21">
+<kw name="Go To Login Page" owner="resource" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.167385" level="INFO">Opening url 'https://the-internet.herokuapp.com/login'</msg>
+<arg>${LOGIN URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.167385" elapsed="0.300373"/>
+</kw>
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.470266" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.467758" elapsed="0.002508"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:27.467758" elapsed="0.002508"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:27.166383" elapsed="0.303883"/>
+</kw>
+<kw name="Login With Invalid Credentials Should Fail">
+<kw name="Input Username" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.472272" level="INFO">Typing text 'tomsmith' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.472272" elapsed="0.017274"/>
+</kw>
+<arg>${username}</arg>
+<status status="PASS" start="2025-12-19T12:32:27.471268" elapsed="0.018278"/>
+</kw>
+<kw name="Input Password" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.490629" level="INFO">Typing text '' into text field 'password'.</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.490629" elapsed="0.011059"/>
+</kw>
+<arg>${password}</arg>
+<status status="PASS" start="2025-12-19T12:32:27.490629" elapsed="0.012058"/>
+</kw>
+<kw name="Submit Credentials" owner="resource">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.503687" level="INFO">Clicking button 'Logout'.</msg>
+<msg time="2025-12-19T12:32:27.571656" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-19.png"&gt;&lt;img src="selenium-screenshot-19.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-19T12:32:27.571656" level="FAIL">Button with locator 'Logout' not found.</msg>
+<arg>Logout</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-12-19T12:32:27.503687" elapsed="0.072968">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:27.502687" elapsed="0.074968">Button with locator 'Logout' not found.</status>
+</kw>
+<kw name="Login Should Have Failed">
+<status status="NOT RUN" start="2025-12-19T12:32:27.577655" elapsed="0.000000"/>
+</kw>
+<arg>${VALID USER}</arg>
+<arg>${EMPTY}</arg>
+<status status="FAIL" start="2025-12-19T12:32:27.471268" elapsed="0.106387">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:27.166383" elapsed="0.412272">Button with locator 'Logout' not found.</status>
+</test>
+<test id="s1-s1-t6" name="Empty Username And Password" line="22">
+<kw name="Go To Login Page" owner="resource" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.580673" level="INFO">Opening url 'https://the-internet.herokuapp.com/login'</msg>
+<arg>${LOGIN URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.580673" elapsed="0.300578"/>
+</kw>
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.885258" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.881251" elapsed="0.004007"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:27.881251" elapsed="0.004007"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:27.580673" elapsed="0.304585"/>
+</kw>
+<kw name="Login With Invalid Credentials Should Fail">
+<kw name="Input Username" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.887254" level="INFO">Typing text '' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.887254" elapsed="0.017607"/>
+</kw>
+<arg>${username}</arg>
+<status status="PASS" start="2025-12-19T12:32:27.887254" elapsed="0.018606"/>
+</kw>
+<kw name="Input Password" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.906861" level="INFO">Typing text '' into text field 'password'.</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.905860" elapsed="0.012520"/>
+</kw>
+<arg>${password}</arg>
+<status status="PASS" start="2025-12-19T12:32:27.905860" elapsed="0.012520"/>
+</kw>
+<kw name="Submit Credentials" owner="resource">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:27.919381" level="INFO">Clicking button 'Logout'.</msg>
+<msg time="2025-12-19T12:32:27.969463" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-20.png"&gt;&lt;img src="selenium-screenshot-20.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-19T12:32:27.969463" level="FAIL">Button with locator 'Logout' not found.</msg>
+<arg>Logout</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-12-19T12:32:27.919381" elapsed="0.051086">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:27.918380" elapsed="0.052087">Button with locator 'Logout' not found.</status>
+</kw>
+<kw name="Login Should Have Failed">
+<status status="NOT RUN" start="2025-12-19T12:32:27.970467" elapsed="0.000000"/>
+</kw>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<status status="FAIL" start="2025-12-19T12:32:27.886255" elapsed="0.084212">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:27.580673" elapsed="0.392795">Button with locator 'Logout' not found.</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-12-19T12:32:27.974471" elapsed="2.826810"/>
+</kw>
+<doc>A test suite containing tests related to invalid login.
+
+These tests are data-driven by their nature. They use a single
+keyword, specified with Test Template setting, that is called
+with different arguments to cover different scenarios.
+
+This suite also demonstrates using setups and teardowns in
+different levels.</doc>
+<status status="FAIL" start="2025-12-19T12:32:16.360487" elapsed="14.440794"/>
+</suite>
+<suite id="s1-s2" name="Valid Login" source="D:\sendtest\RobotDemo\login_tests\valid_login.robot">
+<test id="s1-s2-t1" name="Valid Login" line="9">
+<kw name="Open Browser To Login Page" owner="resource">
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${BROWSER}' == 'Chrome'</arg>
+<arg>Open Chrome With Options</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-12-19T12:32:30.805282" elapsed="0.001000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:30.806282" level="INFO">Opening browser 'Firefox' to base url 'https://the-internet.herokuapp.com/login'.</msg>
+<arg>${LOGIN URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-12-19T12:32:30.806282" elapsed="8.711380"/>
+</kw>
+<arg>'${BROWSER}' != 'Chrome'</arg>
+<arg>Open Browser</arg>
+<arg>${LOGIN URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-12-19T12:32:30.806282" elapsed="8.711380"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-12-19T12:32:39.517662" elapsed="0.274806"/>
+</kw>
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-12-19T12:32:39.792468" elapsed="0.000000"/>
+</kw>
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:39.794466" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-12-19T12:32:39.792468" elapsed="0.001998"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:39.792468" elapsed="0.001998"/>
+</kw>
+<status status="PASS" start="2025-12-19T12:32:30.805282" elapsed="8.989184"/>
+</kw>
+<kw name="Input Username" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:39.794466" level="INFO">Typing text 'tomsmith' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:39.794466" elapsed="0.032229"/>
+</kw>
+<arg>tomsmith</arg>
+<status status="PASS" start="2025-12-19T12:32:39.794466" elapsed="0.032229"/>
+</kw>
+<kw name="Input Password" owner="resource">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:39.829695" level="INFO">Typing text 'Password!' into text field 'password'.</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-12-19T12:32:39.829695" elapsed="0.017763"/>
+</kw>
+<arg>Password!</arg>
+<status status="PASS" start="2025-12-19T12:32:39.827692" elapsed="0.019766"/>
+</kw>
+<kw name="Submit Credentials" owner="resource">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-12-19T12:32:39.849458" level="INFO">Clicking button 'Logout'.</msg>
+<msg time="2025-12-19T12:32:39.915014" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-21.png"&gt;&lt;img src="selenium-screenshot-21.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-12-19T12:32:39.915014" level="FAIL">Button with locator 'Logout' not found.</msg>
+<arg>Logout</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="FAIL" start="2025-12-19T12:32:39.848458" elapsed="0.067555">Button with locator 'Logout' not found.</status>
+</kw>
+<status status="FAIL" start="2025-12-19T12:32:39.847458" elapsed="0.068555">Button with locator 'Logout' not found.</status>
 </kw>
 <kw name="Welcome Page Should Be Open" owner="resource">
-<status status="NOT RUN" start="2025-12-19T10:53:24.544482" elapsed="0.000000"/>
+<status status="NOT RUN" start="2025-12-19T12:32:39.917013" elapsed="0.000000"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-12-19T10:53:24.545483" elapsed="2.838912"/>
+<status status="PASS" start="2025-12-19T12:32:39.918013" elapsed="2.705619"/>
 </kw>
-<status status="FAIL" start="2025-12-19T10:53:14.953787" elapsed="12.430608">Button with locator 'submit' not found.</status>
+<status status="FAIL" start="2025-12-19T12:32:30.805282" elapsed="11.819350">Button with locator 'Logout' not found.</status>
 </test>
 <doc>A test suite with a single test for valid login.
 
 This test has a workflow that is created using keywords in
 the imported resource file.</doc>
-<status status="FAIL" start="2025-12-19T10:53:14.833034" elapsed="12.552360"/>
+<status status="FAIL" start="2025-12-19T12:32:30.802281" elapsed="11.822733"/>
 </suite>
-<status status="FAIL" start="2025-12-19T10:53:14.807889" elapsed="12.577505"/>
+<status status="FAIL" start="2025-12-19T12:32:16.334690" elapsed="26.290324"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="0" fail="7" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Login Tests" id="s1" pass="0" fail="1" skip="0">Login Tests</stat>
-<stat name="Valid Login" id="s1-s1" pass="0" fail="1" skip="0">Login Tests.Valid Login</stat>
+<stat name="Login Tests" id="s1" pass="0" fail="7" skip="0">Login Tests</stat>
+<stat name="Invalid Login" id="s1-s1" pass="0" fail="6" skip="0">Login Tests.Invalid Login</stat>
+<stat name="Valid Login" id="s1-s2" pass="0" fail="1" skip="0">Login Tests.Valid Login</stat>
 </suite>
 </statistics>
 <errors>

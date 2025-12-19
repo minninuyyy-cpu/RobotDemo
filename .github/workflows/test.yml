@@ -23,26 +23,44 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y wget curl gnupg
+        sudo apt-get install -y wget curl gnupg unzip ca-certificates
         
     - name: Install Chrome
       run: |
         # Install Google Chrome (more reliable in CI environments)
-        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg
+        echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
         google-chrome --version
         
     - name: Install ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d. -f1)
-        CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION}")
+        # Get Chrome version
+        CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
+        echo "Chrome version: $CHROME_VERSION"
+        # Get major version number
+        CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d. -f1)
+        echo "Chrome major version: $CHROME_MAJOR_VERSION"
+        # Get matching ChromeDriver version from Chrome for Testing
+        CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_MAJOR_VERSION}")
+        if [ -z "$CHROMEDRIVER_VERSION" ] || [ "$CHROMEDRIVER_VERSION" = "null" ]; then
+          # Fallback: use latest stable version
+          echo "Falling back to latest stable ChromeDriver"
+          CHROMEDRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE")
+        fi
+        echo "Installing ChromeDriver version: $CHROMEDRIVER_VERSION"
+        # Download ChromeDriver
         wget -O /tmp/chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-public/${CHROMEDRIVER_VERSION}/linux64/chromedriver-linux64.zip"
+        # Extract and install
         unzip -q /tmp/chromedriver.zip -d /tmp/
-        sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
+        sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
         sudo chmod +x /usr/local/bin/chromedriver
+        # Verify installation
         chromedriver --version
+        # Verify ChromeDriver can find Chrome
+        which google-chrome
+        google-chrome --version
         
     - name: Install Python dependencies
       run: |

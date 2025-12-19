@@ -18,10 +18,23 @@ ${ERROR URL}      ${SERVER}/login
 
 *** Keywords ***
 Open Browser To Login Page
-    Open Browser    ${LOGIN URL}    ${BROWSER}
+    Run Keyword If    '${BROWSER}' == 'Chrome'    Open Chrome With Options
+    Run Keyword If    '${BROWSER}' != 'Chrome'    Open Browser    ${LOGIN URL}    ${BROWSER}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Login Page Should Be Open
+
+Open Chrome With Options
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${options}    add_argument    --headless=new
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --disable-gpu
+    Call Method    ${options}    add_argument    --window-size=1920,1080
+    Call Method    ${options}    add_argument    --disable-extensions
+    Call Method    ${options}    add_argument    --disable-software-rasterizer
+    Call Method    ${options}    add_argument    --remote-debugging-port=9222
+    Open Browser    ${LOGIN URL}    ${BROWSER}    options=${options}
 
 Login Page Should Be Open
     Title Should Be    The Internet
@@ -39,7 +52,7 @@ Input Password
     Input Text    password    ${password}
 
 Submit Credentials
-    Click Button    submit
+    Click Button    Logout
 
 Welcome Page Should Be Open
     Location Should Be    ${WELCOME URL}
